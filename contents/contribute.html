@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Advanced CGPA Calculator for Anna University and it's affiliated colleges.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Contribute - CGPA Calculator</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/images/logo.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="/images/logo.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+    <!-- Firebase -->
+      
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCJdjeTVOL9T54jOO4UCiovX4Zr39kCg24",
+        authDomain: "cgpa-calculator.firebaseapp.com",
+        databaseURL: "https://cgpa-calculator.firebaseio.com",
+        storageBucket: "firebase-cgpa-calculator.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+      
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="cgpa-article-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+      <div class="cgpa-article-ribbon"></div>
+      <main class="cgpa-article-main mdl-layout__content">
+        <div class="cgpa-article-container mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="cgpa-article-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <div class="cgpa-article-crumbs mdl-color-text--grey-500">
+              CGPA Calculator &gt; Contribute
+            </div>
+            <h3>Contribute</h3>
+              <p>
+                Thanks for your interest in contributing to this project. As students, I would like to have you as one of the contributors. If you are willing to contribute and don't know what and how to contribute, then first you must take a look at the below possible contributions..
+              </p>
+              <ul>
+                <li>CGPA Calculator for Android</li>
+                <li>CGPA Calculator for iOS</li>
+                <li>CGPA Calculator Website enhancement</li>
+                <li>Spelling mistakes in contents</li>
+                <li>GPA or CGPA Calculation mistakes</li>
+                <li>Bug reporting</li>
+                <li>New feature requesting</li>
+                <li>Features integration</li>
+              </ul>
+              <p>
+                When you are ready to contribute in one of the above mentioned categories, please make sure that you are well-versed in those fields. Example, If you would like to contribute in <b>CGPA Calculator for iOS</b>, then you must have knowledge in Swift programming language. Without the knowledge of the fields for contribution, you cannot contribute.
+              </p>
+              <p>
+                If you are willing to contribute on non-developmental sections like <b>Bug reporting</b> and <b>GPA or CGPA Calculation miskates</b>, you doesn't require programming knowledge and your contributions will be accepted!
+              </p>
+            <h3>Why Contribute?</h3>
+              <p>
+                This CGPA Calculator is an open-source project meaning anyone, including you, can edit, modify the entire code and try to add features to this project.You can apply your programming skills and knowledge on this project, to make this project far better.
+              </p>
+              <p>
+                <b>Remember:</b> I'm also one of the student like you. So feel free to contact me about the contribution!
+              </p>
+              <p>
+                You can quickly send a request for contribution from here.
+              </p>
+              <form action="#">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="name-box">
+                    <label class="mdl-textfield__label" for="name-box">Your name</label>
+                  </div>
+              </form>
+              <form action="#">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <textarea class="mdl-textfield__input" type="text" rows= "3" id="details-box" ></textarea>
+                    <label class="mdl-textfield__label" for="details-box">Contribution details with contact info</label>
+                  </div>
+              </form>
+              <p id="status"></p>
+              <button class="mdl-button mdl-js-button mdl-button--primary" onclick="writeContribution()">
+                  Send
+              </button>
+          </div>
+        </div>
+        <footer class="cgpa-article-footer mdl-mini-footer">
+          <div class="mdl-mini-footer--left-section">
+            <ul class="mdl-mini-footer--link-list">
+              <li><a href="#">About</a></li>
+              <li><a href="/contents/contribute.html">Contribute</a></li>
+              <li><a href="/contents/contactus.html">Contact us</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
+      <script>
+            function writeContribution(){
+                var name = document.getElementById("name-box").value;
+                var details = document.getElementById("details-box").value;
+                if(!name && !details){
+                    document.getElementById("status").innerHTML = "All fields required!";
+                }else{
+                    document.getElementById("status").innerHTML = "Request submitted!";
+                    var key = firebase.database().ref("contributors/"+name).push().key;
+                    firebase.database().ref("contributors/"+name).child(key).set({
+                        message: details,
+                        timestamp: Date()
+                    });
+                }
+            }
+      </script>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  </body>
+</html>

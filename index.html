@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Advanced CGPA Calculator for Anna University and it's affiliated colleges.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Main - CGPA Calculator</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/logo.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/logo.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_purple-pink.min.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
+      
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/materializecss/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+    #login-button {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body class="mdl-cgpa mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+      
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row"></div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>CGPA Calculator - beta</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row"></div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a href="#overview" class="mdl-layout__tab is-active">Main</a>
+          <a href="#features" class="mdl-layout__tab">Features</a>
+          <a href="#about" class="mdl-layout__tab">About</a>
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+            <i class="material-icons" role="presentation">add</i>
+            <span class="visuallyhidden">Create Account</span>
+          </button>
+            <div class="mdl-tooltip" for="add">
+                Create account
+            </div>
+        </div>
+      </header>
+        
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+          <section id="card_step1" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                  <label>Course</label>
+                  <select class="browser-default" onchange="toggleCourse(this)">
+                    <option value="0">BE</option>
+                    <option value="1">BTECH</option>
+                  </select>
+                  <label style="margin-top: 16px;">Department</label>
+                  <select id="dept-box" class="browser-default">
+                    <option value="0">B.E Electronics and Communication Engg</option>
+                    <option value="1">B.E Electrical and Electronics Engg</option>
+                    <option value="2">B.E Electronics and Instrumentation Engg</option>
+                    <option value="3">B.E Instrumentation and Control Engg</option>
+                    <option value="4">B.E Civil Engg</option>
+                    <option value="5">B.E EnvironmentalEngg</option>
+                    <option value="6">B.E Geoinformatics Engg</option>
+                    <option value="7">B.E Aeronautical Engg</option>
+                    <option value="8">B.E Automobile Engg</option>
+                    <option value="9">B.E Mechanical Engg</option>
+                    <option value="10">B.E Production Engg</option>
+                    <option value="11">B.E Material Science and Engg</option>
+                    <option value="12">B.E Manufacturing Engg</option>
+                    <option value="13">B.E Industrial Engg and Management</option>
+                    <option value="14">B.E Mechatronics Engg</option>
+                    <option value="15">B.E Mechanical and Automation Engg</option>
+                    <option value="16">B.E Industrial Engg</option>
+                    <option value="17">B.E Mechanical Engg - Sandwich</option>
+                    <option value="18">B.E Computer Science Engg</option>
+                    <option value="19">B.E BioMedical Engg</option>
+                    <option value="20">B.E Medical Electronics</option>
+                    <option value="21">B.E PetroChemical Engg</option>
+                    <option value="22">B.E Marine Engg</option>
+                    <option value="23">B.E Agriculture Engg</option>
+                    <option value="24">B.E Robotics And Automation</option>
+                    <option value="25">B.E Computer and Communication Engg</option>
+                  </select>
+                  <label style="margin-top: 16px;">Semester</label>
+                  <select id="sem-box" class="browser-default">
+                    <option value="0">Semester 1</option>
+                    <option value="1">Semester 2</option>
+                    <option value="2">Semester 3</option>
+                    <option value="3">Semester 4</option>
+                    <option value="4">Semester 5</option>
+                    <option value="5">Semester 6</option>
+                    <option value="6">Semester 7</option>
+                    <option value="7">Semester 8</option>
+                  </select>
+              </div>
+                <button id="startButton" class="mdl-button mdl-js-button mdl-button--primary" style="width: 100px; margin: 16px; align: right;">
+                  Start
+                </button>
+            </div>            
+          </section>
+            <section id="card_step2" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                        <h4 class="mdl-cell mdl-cell--12-col">Subjects</h4>
+                        <div id="gpa-subjects" style="width: inherit;">Start by selecting your course, department and semester</div>
+                    </div>
+                    <button disabled id="calcButton" class="mdl-button mdl-js-button mdl-button--primary" style="width: 100px; margin: 16px; align: right;">
+                        Calculate 
+                    </button>
+                </div>
+            </section>
+            <section id="card_step3" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                <div class="mdl-card mdl-cell mdl-cell--12-col">
+                  <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                    <h4 class="mdl-cell mdl-cell--12-col">Your GPA is</h4>
+                    <div>
+                        <h2 id="gpaValue" class="mdl-color-text--accent" style="align: center;">0.00</h2>
+                        <h6 id="creditsText">Credits : 0</h6>
+                        <h6 id="pointsText">Points earned : 0</h6>
+                        <h6 id="totalPointsText">Total points : 0</h6>
+                    </div>
+                  </div>
+                    <!--<button disabled id="doAgainButton" class="mdl-button mdl-js-button mdl-button--primary" style="width: 100px; margin: 16px; align: right;">
+                        Do Again! 
+                    </button>-->
+                </div>
+          </section>
+            <br><br>
+        </div>
+        <div class="mdl-layout__tab-panel" id="features">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>Features</h4>
+                <p>
+                    CGPA Calculator is an opensource and a cross-platform project initiated to make it available for every students. The reason behind this project can be found on <a href="/contents/about.html">About</a> section. Contribution from various students are welcome, even from you!
+                </p>
+                <p>
+                    If you would like to contribute in some way to the project, see <a href="/contents/contribute.html">Contribute</a> for more info. This project offers various features...
+                </p>
+              <ul class="toc">
+                  <h4>Features</h4>
+                <a href="#cross-platform">Cross platform</a>
+                <a href="#user-account">User accounts</a>
+                <a href="#smart-accurate">Smart and Accurate</a>
+                <a href="#offline-func">Offline functionality</a>
+                <a href="#contribution">Contributions</a>
+              </ul>
+
+              <h5 id="cross-platform">Cross platform</h5>
+                This project can be experienced in all platforms. Currently the following platforms are supported.
+              <ul>
+                <li>Android</li>
+                <li>Web (beta)</li>
+                <li>iOS (currently in development)</li>
+                <li>Windows phone (no support)</li>
+              </ul>
+                
+              <h5 id="user-account">User Account</h5>
+                <p>
+                    Create a personal account with your unique Anna university number, which enables you to calculate, store and manage your Grade points on the go!
+                </p>
+                <p>
+                    Your updations and changes are synced all across your devices and the desktop, simultaneously with latest cloud backend technology. To know about technology behind, see <a href="/contents/howitworks.html">How it works</a> section.
+                </p>
+              <h5 id="smart-accurate">Smart and Accurate</h5>
+                <p>
+                    Calculate your grades quickly and accurately with our efficient algorithm which also enables you to keep track of your arrears (if any) smartly.
+                    Your grades can be updated or changed anytime.
+                </p>
+                <p>
+                    This calculator project uses same formula as Anna University uses, so that you get the same and accurate result as in your marksheet.
+                </p>
+                <p>
+                    To know more about updates, see <a href="/contents/updates.html">updates</a> section.
+                </p>
+
+              <h5 id="offline-func">Offline functionality</h5>
+              <p>
+                 Our cross-platform mobile applications works like charm even when you are offline and all your changes are automatically updated when you get online again. We are planning to add offline functionality even to this website (yes possible!), so that you do not need to have application installed on your mobile everytime to make a new calculation or update existing one.
+              </p>
+                <h5 id="contribution">Contributions</h5>
+              <p>
+                You can <a href="/contents/contribute.html">contribute</a> to this project since I'm a student like you. I would like students to contribute to my project (even from you!) where you get chance to apply your skills and knowledge. Your name will be displayed in the developers section for appropriate credit and you can add this project to your resume or your LinkedIn profile. You are always welcome!
+              </p>
+            </div>
+          </section>
+        </div>
+        <div class="mdl-layout__tab-panel" id="about">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h4>About</h4>
+                <p>
+                    This CGPA Calculator is an Open-source project, meaning anyone (including you!) can edit, modify the entire code &amp; add features to this project and become a contributor. It was just an idea until a student tried to put on his efforts to make it possible. This project was started by him to gain knowledge about how Grade Point Average (GPA) and Cumulative Grade Point Average (CGPA) are calculated and also to learn Android, Web and iOS app development in a single shot!
+                </p>
+                <h5>Developer: </h5>
+                <ul class="demo-list-three mdl-list">
+                    <li class="mdl-list__item mdl-list__item--three-line">
+                        <span class="mdl-list__item-primary-content">
+                          <img src="images/abara.png" class="mdl-list__item-avatar">
+                          <span>Abarajithan Lv</span>
+                          <span class="mdl-list__item-text-body">
+                            Android developer, Backend developer, Web designer and Student.
+                          </span>
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                            <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+                                <i class="material-icons">message</i>
+                            </button>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left" id="dev-dropdown">
+                              <li class="mdl-menu__item gplus" id="dev_gplus">Google+</li>
+                              <li class="mdl-menu__item twitter" id="dev_twitter">Twitter</li>
+                              <li class="mdl-menu__item linkedin" id="dev_linkedin">LinkedIn</li>
+                            </ul>
+                        </span>
+                    </li>
+                </ul>
+                <br><br>
+            </div>
+          </section>
+              <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+                    <div class="mdl-snackbar__text"></div>
+                    <button type="button" class="mdl-snackbar__action">Contribute</button>
+              </div>
+        </div>
+        <footer class="mdl-mega-footer">
+          <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Features</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="/contents/about.html">About</a></li>
+                <li><a href="/contents/updates.html">Updates</a></li>
+                <li><a href="/contents/howitworks.html">How it works</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Platform</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="https://play.google.com/store/apps/details?id=com.abara.calculator">Android</a></li>
+                <li><a href="/contents/dev.html">iOS</a></li>
+              </ul>
+            </div>
+            <div class="mdl-mega-footer--drop-down-section">
+              <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+              <h1 class="mdl-mega-footer--heading">Account</h1>
+              <ul class="mdl-mega-footer--link-list">
+                <li><a href="/contents/dev.html">Create account</a></li>
+                <li><a href="/contents/dev.html">Login</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mdl-mega-footer--bottom-section">
+            <div class="mdl-logo">
+              More Information
+            </div>
+            <ul class="mdl-mega-footer--link-list">
+                <li><a href="/contents/contribute.html">Contribute</a></li>
+                <li><a href="/contents/contactus.html">Contact us</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
+    <a href="/contents/dev.html" id="login-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Login</a>
+    <script type="text/javascript" src="js/indexpage.js"></script>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>
