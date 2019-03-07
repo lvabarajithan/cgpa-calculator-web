@@ -2,6 +2,10 @@
 This is the source code of the CGPA Calculator project website.
 www.cgpacalc.xyz
 
+**Note:**
+This project is no longer in development. 
+You are welcome to fork and continue your own version of this CGPA Calculator.
+
 ### Getting started
 
 To setup the project files for development and contribution, please make sure you perform the following steps.
